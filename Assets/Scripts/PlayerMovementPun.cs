@@ -15,6 +15,7 @@ public class PlayerMovementPun : MonoBehaviourPun
     public float finalSpeed;
     public bool toggleCameraRotation;
     public bool run;
+    float rotSpeed = 120f;
 
     public float smoothness = 10f;
 
@@ -81,8 +82,18 @@ public class PlayerMovementPun : MonoBehaviourPun
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
 
+        // 좌우 이동 키 (A or D)
+        float horz = Input.GetAxis("Horizontal");
+
         Vector3 moveDirection = forward * Input.GetAxisRaw("Vertical");
         // Vector3 moveDirection = forward * Input.GetAxisRaw("Vertical") + right * Input.GetAxisRaw("Horizontal");
+
+
+        // 현재 프레임에서 회전할 각도
+        float amountRot = rotSpeed * Time.deltaTime ;
+
+        // 좌우로 회전
+        transform.Rotate(Vector3.up * amountRot * horz);
 
         _controller.Move(moveDirection.normalized * finalSpeed * Time.deltaTime);
 

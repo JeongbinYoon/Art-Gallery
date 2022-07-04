@@ -247,9 +247,10 @@ GameObject:
   - component: {fileID: 8096915143070653320}
   - component: {fileID: 3219834907409144217}
   - component: {fileID: 8355118353369398093}
+  - component: {fileID: -8845349672605990131}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -350,7 +351,6 @@ MonoBehaviour:
   toggleCameraRotation: 0
   run: 0
   smoothness: 10
-  video: {fileID: 0}
 --- !u!114 &8096915143070653320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -412,6 +412,18 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &-8845349672605990131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 979781021594505715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ddba3bbe59e10c48ade46eb1c64a91b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1034852547517395624
 GameObject:
   m_ObjectHideFlags: 0

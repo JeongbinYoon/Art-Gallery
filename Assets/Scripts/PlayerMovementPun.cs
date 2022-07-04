@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
+using Photon.Pun; 
 
-public class PlayerMovementPun : MonoBehaviour
+public class PlayerMovementPun : MonoBehaviourPun
 {
     Animator _animator;
     Camera _camera;
@@ -17,7 +18,7 @@ public class PlayerMovementPun : MonoBehaviour
 
     public float smoothness = 10f;
 
-    public VideoPlayer video;
+    // public VideoPlayer video;
 
     void Start()
     {
@@ -25,14 +26,21 @@ public class PlayerMovementPun : MonoBehaviour
         _camera = Camera.main;
         _controller = this.GetComponent<CharacterController>();
 
-        video.GetComponent<VideoPlayer>();
+        // video.GetComponent<VideoPlayer>();
 
     }
 
     void Update()
     {
-        if(Input.GetKey(KeyCode.LeftAlt))
+        
+
+        // 로컬 플레이어만 직접 위치 변경 가능
+        if (!photonView.IsMine)
         {
+            return;
+        }
+
+        if(Input.GetKey(KeyCode.LeftAlt)){
             toggleCameraRotation = true; // 둘러보기 활성화
         }
         else
@@ -49,11 +57,17 @@ public class PlayerMovementPun : MonoBehaviour
             run = false;
         }
 
+
         InputMovement();
     }
 
     void LateUpdate()
     {
+        // 로컬 플레이어만 직접 회전 변경 가능
+        if (!photonView.IsMine)
+        {
+            return;
+        }
         if(toggleCameraRotation != true)
         {
             Vector3 playerRotate = Vector3.Scale(_camera.transform.forward, new Vector3(1, 0, 1));
@@ -72,30 +86,33 @@ public class PlayerMovementPun : MonoBehaviour
 
         _controller.Move(moveDirection.normalized * finalSpeed * Time.deltaTime);
 
+        
+        // 입력값에 따라 애니메이터의 Move 파라미터 값을 변경
+
         float percent = ((run) ? 1 : 0.5f) * moveDirection.magnitude;
         _animator.SetFloat("Blend", percent, 0.1f, Time.deltaTime);
     }
 
-    private void OnTriggerEnter (Collider other)
-    {
-        if (other.tag == "VideoPlayer")
-        {
-            video.Play();
-        }
+    // private void OnTriggerEnter (Collider other)
+    // {
+    //     if (other.tag == "VideoPlayer")
+    //     {
+    //         video.Play();
+    //     }
 
-        if(other.tag == "VideoPlayer_stopBtn")
-        {
-            video.Stop();
-        }
+    //     if(other.tag == "VideoPlayer_stopBtn")
+    //     {
+    //         video.Stop();
+    //     }
 
-    }
-    private void OnTriggerExit (Collider other)
-    {
-        if (other.tag == "VideoPlayer")
-        {
-            video.Pause();
-        }
+    // }
+    // private void OnTriggerExit (Collider other)
+    // {
+    //     if (other.tag == "VideoPlayer")
+    //     {
+    //         video.Pause();
+    //     }
 
-    }
+    // }
 
 }

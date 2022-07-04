@@ -1,2 +1,9 @@
 *.mp4 filter=lfs diff=lfs merge=lfs -text
 Assets/picture/exhibition.mp4 filter=lfs diff=lfs merge=lfs -text
+Build/Art filter=lfs diff=lfs merge=lfs -text
+Gallery_Data/sharedassets0.resource filter=lfs diff=lfs merge=lfs -text
+Library/Il2cppBuildCache/WebGL/Native/build.bc filter=lfs diff=lfs merge=lfs -text
+Build/webGL/Build/webGL.data filter=lfs diff=lfs merge=lfs -text
+Library/PlayerDataCache/WebGL/Data/sharedassets0.resource filter=lfs diff=lfs merge=lfs -text
+Library/il2cpp_cache/linkresult_1673A169C7EE8F0F2E2C377C720C52FB/build.bc filter=lfs diff=lfs merge=lfs -text
+Temp/StagingArea/Data/Output/Build/webGL.data filter=lfs diff=lfs merge=lfs -text

@@ -24,6 +24,9 @@ public class PlayerMovement : MonoBehaviour
         _animator = this.GetComponent<Animator>();
         _camera = Camera.main;
         _controller = this.GetComponent<CharacterController>();
+
+        video.GetComponent<VideoPlayer>();
+
     }
 
     void Update()
@@ -64,7 +67,8 @@ public class PlayerMovement : MonoBehaviour
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
 
-        Vector3 moveDirection = forward * Input.GetAxisRaw("Vertical") + right * Input.GetAxisRaw("Horizontal");
+        Vector3 moveDirection = forward * Input.GetAxisRaw("Vertical");
+        // Vector3 moveDirection = forward * Input.GetAxisRaw("Vertical") + right * Input.GetAxisRaw("Horizontal");
 
         _controller.Move(moveDirection.normalized * finalSpeed * Time.deltaTime);
 
@@ -74,8 +78,24 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter (Collider other)
     {
-        video.Pause();
-        Debug.Log("hi");
+        if (other.tag == "VideoPlayer")
+        {
+            video.Play();
+        }
+
+        if(other.tag == "VideoPlayer_stopBtn")
+        {
+            video.Stop();
+        }
+
+    }
+    private void OnTriggerExit (Collider other)
+    {
+        if (other.tag == "VideoPlayer")
+        {
+            video.Pause();
+        }
+
     }
 
 }

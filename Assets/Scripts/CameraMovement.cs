@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
+    Camera _camera;
     public Transform objectTofollow;
     public float followSpeed = 10f;
     public float sensitivity = 100f;
@@ -22,6 +23,8 @@ public class CameraMovement : MonoBehaviour
 
     void Start()
     {
+        _camera = Camera.main;
+
         rotX = transform.localRotation.eulerAngles.x;
         rotY = transform.localRotation.eulerAngles.y;
 
@@ -40,6 +43,8 @@ public class CameraMovement : MonoBehaviour
         rotX = Mathf.Clamp(rotX, -clampAngle, clampAngle);
         Quaternion rot = Quaternion.Euler(rotX, rotY, 0);
         transform.rotation = rot;
+
+        
     }
 
     void LateUpdate() 
@@ -58,5 +63,7 @@ public class CameraMovement : MonoBehaviour
             finalDistance = maxDistance;
         }
         realCamera.localPosition = Vector3.Lerp(realCamera.localPosition, dirNormalized * finalDistance, Time.deltaTime * smoothness);
+        
+        
     }
 }

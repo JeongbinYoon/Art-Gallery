@@ -27,6 +27,11 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable {
 
     private int score = 0; // 현재 게임 점수
     public bool isGameover { get; private set; } // 게임 오버 상태
+    
+    public int playerNum;
+    private GameObject ply1;
+    private GameObject ply2;
+    private GameObject ply3;
 
     // 주기적으로 자동 실행되는, 동기화 메서드
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
@@ -59,6 +64,8 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable {
 
     // 게임 시작과 동시에 플레이어가 될 게임 오브젝트를 생성
     private void Start() {
+        int random = Random.Range(0,2);
+        
         // 생성할 랜덤 위치 지정
         Vector3 randomSpawnPos = Random.insideUnitSphere * 5f;
         // 위치 y값은 0으로 변경
@@ -66,7 +73,22 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable {
 
         // 네트워크 상의 모든 클라이언트들에서 생성 실행
         // 단, 해당 게임 오브젝트의 주도권은, 생성 메서드를 직접 실행한 클라이언트에게 있음
-        PhotonNetwork.Instantiate(playerPrefab.name, randomSpawnPos, Quaternion.identity);
+        ply1 = Resources.Load<GameObject>("Player1");
+        ply2 = Resources.Load<GameObject>("Player2");
+        ply3 = Resources.Load<GameObject>("Player3");
+
+        PlayerSelect playerSelect;
+        playerSelect = GameObject.Find("PlayerSelect").GetComponent<PlayerSelect>();
+        Debug.Log(playerNum);
+
+        if(playerSelect.playerNum == 0){
+            PhotonNetwork.Instantiate(ply1.name, randomSpawnPos, Quaternion.identity);
+        }else if(playerSelect.playerNum == 1){
+            PhotonNetwork.Instantiate(ply2.name, randomSpawnPos, Quaternion.identity);
+        }else if(playerSelect.playerNum == 2){
+            PhotonNetwork.Instantiate(ply3.name, randomSpawnPos, Quaternion.identity);
+        }
+        // PhotonNetwork.Instantiate(playerPrefab.name, randomSpawnPos, Quaternion.identity);
     }
 
     // 점수를 추가하고 UI 갱신

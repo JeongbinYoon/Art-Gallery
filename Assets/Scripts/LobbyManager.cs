@@ -2,6 +2,7 @@ using Photon.Pun; // 유니티용 포톤 컴포넌트들
 using Photon.Realtime; // 포톤 서비스 관련 라이브러리
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 // 마스터(매치 메이킹) 서버와 룸 접속을 담당
 public class LobbyManager : MonoBehaviourPunCallbacks {
@@ -78,5 +79,25 @@ public class LobbyManager : MonoBehaviourPunCallbacks {
         // 모든 룸 참가자들이 Main 씬을 로드하게 함
         // PhotonNetwork.LoadLevel("Main");
         PhotonNetwork.LoadLevel("Gallery");
+    }
+
+    public void choosePlayer(){
+        // 방금 클릭한 게임 오브젝트 가져와서 저장
+        GameObject clickObject = EventSystem.current.currentSelectedGameObject;
+
+        
+        PlayerSelect playerSelect;
+        playerSelect = GameObject.Find("PlayerSelect").GetComponent<PlayerSelect>();
+        // 방금 클릭한 게임 오브젝트 이름
+        if(clickObject.name == "Player1"){
+            playerSelect.playerNum = 0;
+            Debug.Log(playerSelect.playerNum);
+        }else if(clickObject.name == "Player2"){
+            playerSelect.playerNum = 1;
+            Debug.Log(playerSelect.playerNum);
+        }else if(clickObject.name == "Player3"){
+            playerSelect.playerNum = 2;
+            Debug.Log(playerSelect.playerNum);
+        };
     }
 }

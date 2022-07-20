@@ -6,6 +6,9 @@ TagManager:
   tags:
   - VideoPlayer
   - VideoPlayer_stopBtn
+  - Video
+  - VideoPlayer_playBtn
+  - VideoPlayer_pauseBtn
   layers:
   - Default
   - TransparentFX

@@ -18,7 +18,8 @@ public class PlayerMovementPun : MonoBehaviourPun
     float rotSpeed = 120f;
 
     public float smoothness = 10f;
-
+    GameObject video;
+    VideoPlayer videoplayer;
     // public VideoPlayer video;
 
     void Start()
@@ -26,8 +27,9 @@ public class PlayerMovementPun : MonoBehaviourPun
         _animator = this.GetComponent<Animator>();
         _camera = Camera.main;
         _controller = this.GetComponent<CharacterController>();
-
-        // video.GetComponent<VideoPlayer>();
+        video = GameObject.Find("Videoplayer1");
+        videoplayer = video.GetComponent<VideoPlayer>();
+        Debug.Log(videoplayer);
 
     }
 
@@ -104,24 +106,29 @@ public class PlayerMovementPun : MonoBehaviourPun
         _animator.SetFloat("Blend", percent, 0.1f, Time.deltaTime);
     }
 
-    // private void OnTriggerEnter (Collider other)
-    // {
-    //     if (other.tag == "VideoPlayer")
-    //     {
-    //         video.Play();
-    //     }
+    private void OnTriggerEnter (Collider other)
+    {
+        if (other.tag == "VideoPlayer_playBtn")
+        {
+            videoplayer.Play();
+        }
 
-    //     if(other.tag == "VideoPlayer_stopBtn")
-    //     {
-    //         video.Stop();
-    //     }
+        if (other.tag == "VideoPlayer_pauseBtn")
+        {
+            videoplayer.Pause();
+        }
 
-    // }
+        if(other.tag == "VideoPlayer_stopBtn")
+        {
+            videoplayer.Stop();
+        }
+
+    }
     // private void OnTriggerExit (Collider other)
     // {
     //     if (other.tag == "VideoPlayer")
     //     {
-    //         video.Pause();
+    //         videoplayer.Pause();
     //     }
 
     // }

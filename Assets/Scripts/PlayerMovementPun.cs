@@ -29,7 +29,7 @@ public class PlayerMovementPun : MonoBehaviourPun
         _controller = this.GetComponent<CharacterController>();
         video = GameObject.Find("Videoplayer1");
         videoplayer = video.GetComponent<VideoPlayer>();
-        Debug.Log(videoplayer);
+        // Debug.Log(videoplayer);
 
     }
 

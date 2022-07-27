@@ -106,13 +106,10 @@ public class LobbyManager : MonoBehaviourPunCallbacks {
         // 방금 클릭한 게임 오브젝트 이름
         if(clickObject.name == "Player1"){
             playerSelect.playerNum = 0;
-            Debug.Log(playerSelect.playerNum);
         }else if(clickObject.name == "Player2"){
             playerSelect.playerNum = 1;
-            Debug.Log(playerSelect.playerNum);
         }else if(clickObject.name == "Player3"){
             playerSelect.playerNum = 2;
-            Debug.Log(playerSelect.playerNum);
         };
     }
 }

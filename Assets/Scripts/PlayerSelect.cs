@@ -7,7 +7,7 @@ public class PlayerSelect : MonoBehaviour
     public int playerNum;
     void Start()
     {
-        Debug.Log(playerNum);
+        // Debug.Log(playerNum);
     }
 
     public static PlayerSelect Instance;

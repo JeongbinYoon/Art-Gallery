@@ -79,7 +79,6 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable {
 
         PlayerSelect playerSelect;
         playerSelect = GameObject.Find("PlayerSelect").GetComponent<PlayerSelect>();
-        Debug.Log(playerNum);
 
         if(playerSelect.playerNum == 0){
             PhotonNetwork.Instantiate(ply1.name, randomSpawnPos, Quaternion.identity);

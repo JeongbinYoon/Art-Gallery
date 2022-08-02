@@ -29,11 +29,12 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     [Header("ETC")]
     public Text StatusText;
     public PhotonView PV;
+    
 
     List<RoomInfo> myList = new List<RoomInfo>();
     int currentPage = 1, maxPage, multiple;
 
-
+    string playerName = "";
 
     // #region 방리스트 갱신
     // // ◀버튼 -2 , ▶버튼 -1 , 셀 숫자
@@ -156,14 +157,27 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     private void Start() {
         ChatInput.text = "";
-        for (int i = 0; i < ChatText.Length; i++) ChatText[i].text = "";    
+        for (int i = 0; i < ChatText.Length; i++) ChatText[i].text = "";  
+
+
+        PlayerSelect playerSelect;
+        playerSelect = GameObject.Find("PlayerSelect").GetComponent<PlayerSelect>();
+
+
+        if(playerSelect.playerNum == 0){
+            playerName = "Remy";
+        }else if(playerSelect.playerNum == 1){
+            playerName = "Roth";
+        }else if(playerSelect.playerNum == 2){
+            playerName = "Ortiz";
+        }  
     }
 
     #region 채팅
     public void Send()
     {
         // PV.RPC("ChatRPC", RpcTarget.All, PhotonNetwork.NickName + " : " + ChatInput.text);
-        PV.RPC("ChatRPC", RpcTarget.All, " : " + ChatInput.text);
+        PV.RPC("ChatRPC", RpcTarget.All, playerName + " : " + ChatInput.text);
         ChatInput.text = "";
     }
 

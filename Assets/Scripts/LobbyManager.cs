@@ -13,6 +13,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks {
     public Button Player1Button; // 캐릭터 선택, 룸 접속 버튼
     public Button Player2Button; // 캐릭터 선택, 룸 접속 버튼
     public Button Player3Button; // 캐릭터 선택, 룸 접속 버튼
+    public Button Player4Button; // 캐릭터 선택, 룸 접속 버튼
+    public Button Player5Button; // 캐릭터 선택, 룸 접속 버튼
 
     // 게임 실행과 동시에 마스터 서버 접속 시도
     private void Start() {
@@ -26,6 +28,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks {
         Player1Button.interactable = false;
         Player2Button.interactable = false;
         Player3Button.interactable = false;
+        Player4Button.interactable = false;
+        Player5Button.interactable = false;
         // 접속을 시도 중임을 텍스트로 표시
         connectionInfoText.text = "마스터 서버에 접속중...";
     }
@@ -37,6 +41,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks {
         Player1Button.interactable = true;
         Player2Button.interactable = true;
         Player3Button.interactable = true;
+        Player4Button.interactable = true;
+        Player5Button.interactable = true;
         // 접속 정보 표시
         connectionInfoText.text = "온라인 : 마스터 서버와 연결됨";
     }
@@ -48,6 +54,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks {
         Player1Button.interactable = false;
         Player2Button.interactable = false;
         Player3Button.interactable = false;
+        Player4Button.interactable = false;
+        Player5Button.interactable = false;
         // 접속 정보 표시
         connectionInfoText.text = "오프라인 : 마스터 서버와 연결되지 않음\n접속 재시도 중...";
 
@@ -62,6 +70,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks {
         Player1Button.interactable = false;
         Player2Button.interactable = false;
         Player3Button.interactable = false;
+        Player4Button.interactable = false;
+        Player5Button.interactable = false;
 
         // 마스터 서버에 접속중이라면
         if (PhotonNetwork.IsConnected)
@@ -84,7 +94,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks {
         // 접속 상태 표시
         connectionInfoText.text = "빈 방이 없음, 새로운 방 생성...";
         // 최대 4명을 수용 가능한 빈방을 생성
-        PhotonNetwork.CreateRoom(null, new RoomOptions {MaxPlayers = 4});
+        PhotonNetwork.CreateRoom(null, new RoomOptions {MaxPlayers = 5});
     }
 
     // 룸에 참가 완료된 경우 자동 실행
@@ -110,6 +120,10 @@ public class LobbyManager : MonoBehaviourPunCallbacks {
             playerSelect.playerNum = 1;
         }else if(clickObject.name == "Player3"){
             playerSelect.playerNum = 2;
+        }else if(clickObject.name == "Player4"){
+            playerSelect.playerNum = 3;
+        }else if(clickObject.name == "Player5"){
+            playerSelect.playerNum = 4;
         };
     }
 }

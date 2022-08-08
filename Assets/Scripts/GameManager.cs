@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable {
     private GameObject ply1;
     private GameObject ply2;
     private GameObject ply3;
+    private GameObject ply4;
+    private GameObject ply5;
 
     // 주기적으로 자동 실행되는, 동기화 메서드
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
@@ -76,6 +78,8 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable {
         ply1 = Resources.Load<GameObject>("Player1");
         ply2 = Resources.Load<GameObject>("Player2");
         ply3 = Resources.Load<GameObject>("Player3");
+        ply4 = Resources.Load<GameObject>("Player4");
+        ply5 = Resources.Load<GameObject>("Player5");
 
         PlayerSelect playerSelect;
         playerSelect = GameObject.Find("PlayerSelect").GetComponent<PlayerSelect>();
@@ -86,6 +90,10 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable {
             PhotonNetwork.Instantiate(ply2.name, randomSpawnPos, Quaternion.identity);
         }else if(playerSelect.playerNum == 2){
             PhotonNetwork.Instantiate(ply3.name, randomSpawnPos, Quaternion.identity);
+        }else if(playerSelect.playerNum == 3){
+            PhotonNetwork.Instantiate(ply4.name, randomSpawnPos, Quaternion.identity);
+        }else if(playerSelect.playerNum == 4){
+            PhotonNetwork.Instantiate(ply5.name, randomSpawnPos, Quaternion.identity);
         }
         // PhotonNetwork.Instantiate(playerPrefab.name, randomSpawnPos, Quaternion.identity);
     }

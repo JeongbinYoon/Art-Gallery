@@ -170,7 +170,11 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             playerName = "Roth";
         }else if(playerSelect.playerNum == 2){
             playerName = "Ortiz";
-        }  
+        }else if(playerSelect.playerNum == 3){
+            playerName = "Louise";
+        }else if(playerSelect.playerNum == 4){
+            playerName = "Brice";
+        }
     }
 
     #region 채팅

@@ -28,7 +28,9 @@ public class PlayerMovementPun : MonoBehaviourPun
         _camera = Camera.main;
         _controller = this.GetComponent<CharacterController>();
         video = GameObject.Find("Videoplayer1");
-        videoplayer = video.GetComponent<VideoPlayer>();
+        if(videoplayer != null){
+            videoplayer = video.GetComponent<VideoPlayer>();
+        }
         // Debug.Log(videoplayer);
 
     }

@@ -28,9 +28,9 @@ public class PlayerMovementPun : MonoBehaviourPun
         _camera = Camera.main;
         _controller = this.GetComponent<CharacterController>();
         video = GameObject.Find("Videoplayer1");
-        if(videoplayer != null){
+        // if(videoplayer != null){
             videoplayer = video.GetComponent<VideoPlayer>();
-        }
+        // }
         // Debug.Log(videoplayer);
 
     }
@@ -126,13 +126,13 @@ public class PlayerMovementPun : MonoBehaviourPun
         }
 
     }
-    // private void OnTriggerExit (Collider other)
-    // {
-    //     if (other.tag == "VideoPlayer")
-    //     {
-    //         videoplayer.Pause();
-    //     }
+    private void OnTriggerExit (Collider other)
+    {
+        if (other.tag == "VideoPlayer")
+        {
+            videoplayer.Pause();
+        }
 
-    // }
+    }
 
 }
